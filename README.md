@@ -1,7 +1,6 @@
 # Homomorphic Encryption Matrix Operations with Pyfhel
 
-This project demonstrates how to use [**Pyfhel**](https://github.com/ibarrond/Pyfhel), a Python library for homomorphic encryption (HE), to perform encrypted array and matrix operations.  
-The scripts show how to process data securely without decrypting it, with applications in **privacy-preserving matrix computation** and **secure data processing**.
+This project demonstrates how to use [**Pyfhel**](https://github.com/ibarrond/Pyfhel), a Python library for fully homomorphic encryption (FHE), to perform encrypted matrix operations. It shows how to process data securely without decrypting it, with applications in **privacy-preserving matrix computation** and **secure data processing**.
 
 ---
 
