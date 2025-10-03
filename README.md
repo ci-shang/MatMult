@@ -10,7 +10,7 @@ The scripts show how to process data securely without decrypting it, with applic
 - **`arr_process.py`**  
   Implements basic encrypted array processing (encryption, decryption, element-wise operations, etc.).  
 
-- **`Matrix_mul_matrix.py`**  
+- **`matrix_mult_matrix.py`**  
   Demonstrates **matrix multiplication** over encrypted data using Pyfhel.  
   It shows how homomorphic operations can be applied to matrix structures securely.  
 
