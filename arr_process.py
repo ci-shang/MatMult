@@ -1,44 +1,38 @@
 import numpy as np
 import time
 
-# 根据两个数组行列最大值，将两个数组的行列填充0，以达到行列的最大值
 def padding_zero(A, B):
     row_A, col_A = A.shape
     row_B, col_B = B.shape
-    m = max(row_A, row_B, col_A, col_B)  # 行取行列最大数
-    n = max(col_A, col_B, row_A, row_B)  # 列取行列最大数
+    m = max(row_A, row_B, col_A, col_B)  
+    n = max(col_A, col_B, row_A, row_B)  
 
-    A_padded = [[0] * n for _ in range(m)]  # 生成m行n列的零矩阵
+    A_padded = [[0] * n for _ in range(m)] 
     B_padded = [[0] * n for _ in range(m)]
 
-    # 填充A到A_padded
     for i in range(row_A):
         for j in range(col_A):
             A_padded[i][j] = A[i][j]
 
-    # 填充B到B_padded
     for i in range(row_B):
         for j in range(col_B):
             B_padded[i][j] = B[i][j]
     return np.array(A_padded), np.array(B_padded)
 
-# 将数组依次按斜对角线展开
 def diagonal(arr):
     d = arr.shape[0]
     arr_list = []
     # arr_list.append(np.diagonal(arr))
     for k in range(d):
         arr_list.append(np.diagonal(arr))
-        arr = np.roll(arr, -1, axis=1)      # 将二维数组按列向左滚动1位
-    return np.array(arr_list).flatten()     # flatten() 将二维数组展开为一维数组
+        arr = np.roll(arr, -1, axis=1)      
+    return np.array(arr_list).flatten()     
 
-# 数组A 按对角线展开对应的Binary向量
 def diag_masking_A(d, arr):
     arr_diag_flat = diagonal(arr)
     arr_len = arr_diag_flat.shape[0]
     binary_vec = []
 
-    # 循环添加binary向量，第i个binary向量对应为第i个对角线元素
     i = 0
     while i < arr_len:
         temp = [0] * arr_len
@@ -51,12 +45,11 @@ def diag_masking_A(d, arr):
     print(f"->\t{np.array(binary_vec)}")
     return np.array(binary_vec), arr_diag_flat
 
-# 将B数组的元素按列进行滚动，每滚动一次就存储，共存储为arr.shape[0]个数组
 def arr_B_extra(arr):
     arr = arr.T
     arr_B = []
     for i in range(arr.shape[0]):
-        arr_B.append(np.roll(arr, -i, axis=1))  # 将数组按列向左滚动i位
+        arr_B.append(np.roll(arr, -i, axis=1)) 
         arr_B[i] = arr_B[i].flatten()
 
     # binary_vec = np.where(arr_flat != 0, 1, 0)
