@@ -6,16 +6,15 @@ This project demonstrates how to use [**Pyfhel**](https://github.com/ibarrond/Py
 
 ## 📂 Project Structure
 
+- **`data_process.py`**  
+  Provides data pre-processing utilities for handling inputs. 
+
 - **`arr_process.py`**  
-  Implements basic encrypted array processing (encryption, decryption, element-wise operations, etc.).  
+  Implements basic array processing before encryption.  
 
 - **`matrix_mult_matrix.py`**  
   Demonstrates **matrix multiplication** over encrypted data using Pyfhel.  
-  It shows how homomorphic operations can be applied to matrix structures securely.  
-
-- **`data_process.py`**  
-  Provides data pre-processing utilities for handling inputs before encryption,  
-  and post-processing after decryption.  
+  It shows how homomorphic operations can be applied to matrix structures securely.    
 
 ---
 
