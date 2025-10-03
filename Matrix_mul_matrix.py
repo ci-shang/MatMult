@@ -49,7 +49,6 @@ def encryption(arr_diag_flat, arr_B):
     ptxt_A = HE.encodeInt(arr_diag_flat)
     ctxt_arr_A = HE.encryptPtxt(ptxt_A)
 
-    # 提取出滚动后的每一个数组，并分别进行加密
     ctxt_arr_B = []
     for i in range(arr_B.shape[0]):
         ptxt_B = HE.encodeInt(arr_B[i])
@@ -155,7 +154,6 @@ if __name__ == '__main__':
 
     binary_vec_A, arr_diag_flat, arr_B = processing_mat(A, B)
 
-    # 计算encryption函数运行的时间
     ctxt_arr_A, ctxt_arr_B = encryption(arr_diag_flat, arr_B)
     ctxt_arr_A_size = sys.getsizeof(ctxt_arr_A)
     print(f"   - Size of ctxt_arr_A:           --> {ctxt_arr_A_size} ")
@@ -163,23 +161,21 @@ if __name__ == '__main__':
     temp_enc = running_time(encryption_runtime)
     temp_enc(arr_diag_flat, arr_B)
 
-    # 计算mat_mul_mat函数的运行时间
     temp_mul = running_time(mat_mul_mat)
     mmm_result= temp_mul(ctxt_arr_A, binary_vec_A, ctxt_arr_B)
     # mmm_result = mat_mul_mat(ctxt_arr_A, binary_vec_A, ctxt_arr_B)
 
-    # 计算decryption函数的运行时间
     dimension = binary_vec_A.shape[0]
     temp_dec = running_time(HE.decryptInt)
     matrix_mul_mat_result = temp_dec(mmm_result)
     # matrix_mul_mat_result = HE.decryptInt(mmm_result)
 
-    mul_arr = matrix_mul_mat_result[:dimension ** 3]  # 解密后的明文取数组维度的平方个元素，且为一维数组
+    mul_arr = matrix_mul_mat_result[:dimension ** 3]  
 
-    mul_arr.resize((dimension ** 2, dimension))    # 将一维数组变成二维数组
-    mul_arr = mul_arr.T      # 结果进行转置
-    mul_arr = mul_arr[mul_arr != 0]   # 使用非0元素索引函数获取所有非0元素
-    mul_arr.resize((A.shape[0], B.shape[1]))  # 最终的乘积数组维度为第一个数组的行数和第二个数组的列数
+    mul_arr.resize((dimension ** 2, dimension))   
+    mul_arr = mul_arr.T     
+    mul_arr = mul_arr[mul_arr != 0]  
+    mul_arr.resize((A.shape[0], B.shape[1]))  
     print(f"\n\t==> HE Maritx and Mat Multi result: \n{mul_arr}")
 
 
