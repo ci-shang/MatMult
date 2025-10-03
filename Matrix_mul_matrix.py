@@ -3,7 +3,7 @@ import sys
 
 import numpy as np
 from Pyfhel import Pyfhel
-from Arr_Processing import *
+from arr_process import *
 from data_process import *
 
 print("\n1. Pyfhel Import")
