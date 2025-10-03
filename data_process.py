@@ -9,7 +9,6 @@ def adult_process(row_shape, col_shape):
 
     data = pd.read_csv('data/adult.csv', names=columns)
 
-    # 选择连续型的数据列
     continuous_cols = []
 
     for col in data.columns:
